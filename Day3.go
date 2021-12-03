@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/MaxdenHartog/AoC2021/helpers"
 )
@@ -12,6 +13,7 @@ func (function *Function) Day3_1() {
 	ones := make([]int, len(data[0]))
 
 	gamma := ""
+	epsilon := ""
 
 	for i := 0; i < length; i++ {
 		for j := 0; j < len(data[i]); j++ {
@@ -22,13 +24,20 @@ func (function *Function) Day3_1() {
 
 	}
 
+	// Couldn't figure out how to flip the bits so I resorted to this :(
 	for i := 0; i < len(ones); i++ {
 		if ones[i] > length-ones[i] {
 			gamma += "1"
+			epsilon += "0"
 		} else {
 			gamma += "0"
+			epsilon += "1"
 		}
 	}
 
-	fmt.Println(gamma)
+	gammaValue, _ := strconv.ParseInt(gamma, 2, 64)
+	epsilonValue, _ := strconv.ParseInt(epsilon, 2, 64)
+	result := gammaValue * epsilonValue
+
+	fmt.Println(result)
 }
