@@ -45,74 +45,68 @@ func (function *Function) Day3_1() {
 
 // =================================== Puzzle 2 ===================================
 func (function *Function) Day3_2() {
-	data, length := helpers.ReadLines("input/example.txt")
+	data, length := helpers.ReadLines("input/03.txt")
 
-	oxygen := Day3_2_ImplementationOxygen(0, data)
-	c02 := Day3_2_ImplementationC02(0, data, length)
+	oxygen := Day3_2_ImplementationOxygen(0, data, length)
+	co2 := Day3_2_ImplementationC02(0, data, length)
 
-	oxygenValue, _ := strconv.Atoi(oxygen)
-	co2Value, _ := strconv.Atoi(c02)
-
-	result := oxygenValue * co2Value
+	result := oxygen * co2
 
 	fmt.Println(result)
 }
 
-func Day3_2_ImplementationOxygen(column int, data []string) (oxygen string) {
-	ones := 0
-	zeroes := 0
-	oneBits := make([]string, len(data))
-	zeroBits := make([]string, len(data))
-	fmt.Println(len(data))
-	j := 0
-	for i := 0; i < len(data); i++ {
-		fmt.Println(i)
-		if data[i][column] == '1' {
-			oneBits[j] = data[i]
-			ones++
-			j++
-		} else {
-			zeroBits[j] = data[i]
-			zeroes++
-			j++
-		}
+func Day3_2_ImplementationOxygen(column int, data []string, length int) (oxygen int64) {
+	if length == 1 {
+		oxygen, _ = strconv.ParseInt(data[0], 2, 64)
+		return oxygen
 	}
 
-	if len(data) > 1 {
-		if ones >= zeroes {
-			fmt.Println(len(oneBits))
-			Day3_2_ImplementationOxygen(column+1, oneBits)
-		} else {
-			Day3_2_ImplementationOxygen(column+1, zeroBits)
-		}
-	}
-
-	return oxygen
-}
-
-func Day3_2_ImplementationC02(column int, data []string, length int) (c02 string) {
 	ones := 0
 	zeroes := 0
 	oneBits := make([]string, length)
 	zeroBits := make([]string, length)
 
-	for i := 0; i < len(data); i++ {
+	for i := 0; i < length; i++ {
 		if data[i][column] == '1' {
-			oneBits[column] = data[i]
+			oneBits[ones] = data[i]
 			ones++
 		} else {
-			zeroBits[column] = data[i]
+			zeroBits[zeroes] = data[i]
 			zeroes++
 		}
 	}
 
-	if len(data) > 1 {
-		if zeroes <= ones {
-			Day3_2_ImplementationC02(column+1, zeroBits, length)
+	if ones >= zeroes {
+		return Day3_2_ImplementationOxygen(column+1, oneBits, ones)
+	} else {
+		return Day3_2_ImplementationOxygen(column+1, zeroBits, zeroes)
+	}
+}
+
+func Day3_2_ImplementationC02(column int, data []string, length int) (co2 int64) {
+	if length == 1 {
+		co2, _ = strconv.ParseInt(data[0], 2, 64)
+		return co2
+	}
+
+	ones := 0
+	zeroes := 0
+	oneBits := make([]string, length)
+	zeroBits := make([]string, length)
+
+	for i := 0; i < length; i++ {
+		if data[i][column] == '1' {
+			oneBits[ones] = data[i]
+			ones++
 		} else {
-			Day3_2_ImplementationC02(column+1, oneBits, length)
+			zeroBits[zeroes] = data[i]
+			zeroes++
 		}
 	}
 
-	return c02
+	if zeroes <= ones {
+		return Day3_2_ImplementationC02(column+1, zeroBits, zeroes)
+	} else {
+		return Day3_2_ImplementationC02(column+1, oneBits, ones)
+	}
 }
