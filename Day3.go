@@ -45,7 +45,7 @@ func (function *Function) Day3_1() {
 
 // =================================== Puzzle 2 ===================================
 func (function *Function) Day3_2() {
-	data, length := helpers.ReadLines("input/example.txt")
+	data, length := helpers.ReadLines("input/03.txt")
 
 	oxygen := Day3_2_ImplementationOxygen(0, data)
 	c02 := Day3_2_ImplementationC02(0, data, length)
