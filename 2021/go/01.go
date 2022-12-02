@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/MaxdenHartog/AoC2021/helpers"
+	"github.com/MaxdenHartog/Advent-of-Code/go/helpers"
 )
 
 func (function *Function) Day1_1() {

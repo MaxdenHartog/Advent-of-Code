@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/MaxdenHartog/AoC2021/helpers"
+	"github.com/MaxdenHartog/AoC2021/go/helpers"
 )
 
 func (function *Function) Day2_1() {

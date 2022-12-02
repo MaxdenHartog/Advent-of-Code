@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/MaxdenHartog/AoC2021/helpers"
+	"github.com/MaxdenHartog/Advent-of-Code/go/helpers"
 )
 
 // =================================== Puzzle 1 ===================================
