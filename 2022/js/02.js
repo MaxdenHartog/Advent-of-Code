@@ -1,5 +1,5 @@
-var io = require('./helpers/io');
-var input = io.readLines('./input/02.txt');
+var io = require('../../helpers/js/io');
+var input = io.readLines('../input/02.txt');
 
 day2_1();
 day2_2();
