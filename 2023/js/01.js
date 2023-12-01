@@ -1,5 +1,5 @@
 var io = require('../../helpers/js/io');
-var input = io.readLines('../input/test.txt');
+var input = io.readLines('../input/01.txt');
 
 const numbers = [
     "zero",
@@ -14,7 +14,21 @@ const numbers = [
     "nine"
 ]
 
-day1_1();
+const numbersReverse = [
+    "orez",
+    "eno",
+    "owt",
+    "eerht",
+    "ruof",
+    "evif",
+    "xis",
+    "neves",
+    "thgie",
+    "enin"
+]
+
+
+//day1_1();
 day1_2();
 
 function day1_1(){
@@ -32,12 +46,15 @@ function day1_2(){
     let sum = 0;
     for (let i = 0; i < input.length; i++){
         let calibration = input[i].match(/\d|(zero)|(one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)/g);
+        console.log(calibration);
         let first = !isNaN(parseInt(calibration[0])) ?
             parseInt(calibration[0]) * 10 :
             numbers.indexOf(calibration[0]) * 10;
-        let last = !isNaN(parseInt(calibration[calibration.length - 1])) ?
-            parseInt(calibration[calibration.length - 1]) :
-            numbers.indexOf(calibration[calibration.length - 1]);
+        let calibrationReverse = input[i].split("").reverse().join("").match(/\d|(orez)|(eno)|(owt)|(eerht)|(ruof)|(evif)|(xis)|(neves)|(thgie)|(enin)/g);
+        console.log(calibrationReverse);
+        let last = !isNaN(parseInt(calibrationReverse[0])) ?
+            parseInt(calibrationReverse[0]) :
+            numbersReverse.indexOf(calibrationReverse[0]);
         sum += first + last;
     }
     console.log("Puzzle 2:");
