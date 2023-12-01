@@ -17,7 +17,9 @@ function day1_1(){
 
 function day1_2(){
     let sum = 0;
-
+    for (let i = 0; i < input.length; i++){
+        numbers.some(function(n) {return input[i].includes(n)})
+    }
     console.log("Puzzle 2:");
     console.log(sum);
 }
